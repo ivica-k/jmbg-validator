@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__version__ = "0.0.1"
+__version__ = "1.0.0"
 
 from distutils.core import setup
 import setuptools
