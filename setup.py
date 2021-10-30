@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
+__version__ = "0.0.1"
+
 from distutils.core import setup
 
 setup(
     name="JMBG Validator",
-    version="1.0",
-    description="Validira i ispisuje osnovne podatke o JMBGu",
+    version=__version__,
+    description="Validira i ispisuje osnovne podatke o JMBGu. EN: Validates and displays basic UMCN data.",
     author="Ivica Kolenkaš",
     url="https://github.com/ivica-k",
     packages=["jmbg_validator"],
