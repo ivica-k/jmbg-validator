@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.2 (2021-10-30)
+### Fix
+* Includes long and short descriptions for PyPI ([`d194462`](https://github.com/ivica-k/jmbg-validator/commit/d194462ff4bc69510c7c8d924208ac34ddb7ee16))
+
 ## v1.0.1 (2021-10-30)
 ### Fix
 * Configures GH action to release to PyPI ([`1f872e9`](https://github.com/ivica-k/jmbg-validator/commit/1f872e99294faba898bbe8c36208d885f8dddb8f))
