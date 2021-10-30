@@ -17,7 +17,7 @@ from jmbg_validator.output import JMBG
 
 REGEX = r"(\d{2})(\d{2})(\d{3})(\d{2})(\d{3})(\d{1})"
 DATETIME_FORMAT = "%d.%m.%Y."
-OUTPUT_CHOICES = ["table", "simple", "json", "lambda"]
+OUTPUT_CHOICES = ["table", "text", "json"]
 
 
 def verify_date(day, month, year):
@@ -131,32 +131,36 @@ def _parse_args():
 
 
 def validate(jmbg):
-    try:
-        if verify_length(jmbg) and verify_is_number(jmbg):
-            day, month, year, region, sex, control = split_fields(jmbg)
-            human_year = int(f"1{year}")
+    if verify_length(jmbg) and verify_is_number(jmbg):
+        day, month, year, region, sex, control = split_fields(jmbg)
+        human_year = int(f"1{year}")
 
-            if verify_date(day, month, human_year):
-                sex = get_sex(sex)
-                dob = get_dob(day, month, human_year)
-                region = get_region(region)
+        if verify_date(day, month, human_year):
+            sex = get_sex(sex)
+            dob = get_dob(day, month, human_year)
+            region = get_region(region)
 
-                jmbg_sum = get_sum(jmbg)
-                valid = verify_control(jmbg_sum, control)
+            jmbg_sum = get_sum(jmbg)
+            valid = verify_control(jmbg_sum, control)
 
-                return JMBG(sex, dob, valid, region)
-
-    except Exception as ex:
-        exit(ex)
+            return JMBG(sex, dob, valid, region)
 
 
 def cli():
     args = _parse_args()
-    if args.output.lower() == "table":
-        print(validate(args.jmbg).to_text_table())
 
-    else:
-        print(validate(args.jmbg).to_text_simple())
+    try:
+        if args.output.lower() == "table":
+            print(validate(args.jmbg).to_table())
+
+        elif args.output.lower() == "json":
+            print(validate(args.jmbg).to_json().decode())
+
+        else:
+            print(validate(args.jmbg).to_text())
+
+    except Exception as ex:
+        exit(ex)
 
 
 if __name__ == "__main__":
