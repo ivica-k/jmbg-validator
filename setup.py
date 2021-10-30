@@ -3,6 +3,7 @@
 __version__ = "0.0.1"
 
 from distutils.core import setup
+import setuptools
 
 setup(
     name="JMBG Validator",
@@ -12,6 +13,7 @@ setup(
     url="https://github.com/ivica-k",
     packages=["jmbg_validator"],
     license="MPL2.0",
+    setup_requires=["wheel"],
     package_dir={"jmbg_validator": "jmbg_validator"},
     entry_points={
         "console_scripts": ["jmbg-validator=jmbg_validator.main:cli"],
