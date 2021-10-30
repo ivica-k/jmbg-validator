@@ -4,11 +4,17 @@ __version__ = "1.0.1"
 
 from distutils.core import setup
 import setuptools
+from pathlib import Path
+
+
+current_dir = Path(__file__).parent
 
 setup(
     name="JMBG Validator",
     version=__version__,
     description="Validira i ispisuje osnovne podatke o JMBGu. EN: Validates and displays basic UMCN data.",
+    long_description=(current_dir / "README.md").read_text(),
+    long_description_content_type="text/markdown",
     author="Ivica Kolenkaš",
     author_email="ivica.kolenkas@gmail.com",
     url="https://github.com/ivica-k/jmbg-validator",
